@@ -1,7 +1,8 @@
 const { prependListener } = require("process")
-
+const fs = require("fs")
+const util = require('util');
+const mkdirAsync = util.promisify(fs.mkdir);
 async function executeNormalization(nomeArquivoEntrada, nomeArquivoSaida){
-    const fs = require("fs")
     const arquivoLeitura = fs.createReadStream("corpus_data/original_corpus/" + nomeArquivoEntrada)
     if(fs.existsSync("corpus_data/normalized_corpus")){
         if(fs.existsSync("corpus_data/normalized_corpus/" + nomeArquivoSaida)){
@@ -13,14 +14,10 @@ async function executeNormalization(nomeArquivoEntrada, nomeArquivoSaida){
         }
 
     }else{
-        fs.mkdir("corpus_data/normalized_corpus",{ recursive: true },(err)=>{
-            if(err){
-                return Promise.resolve(false)
-            }
-            const arquivoEscrita = fs.createWriteStream("corpus_data/normalized_corpus/"+ nomeArquivoSaida)
-            const {normalizeTextStream} = require("./normalize_stream_text/index")
-           return normalizeTextStream(arquivoLeitura,arquivoEscrita)
-        })
+        await mkdirAsync("corpus_data/normalized_corpus",{ recursive: true }).catch(err=>console.log(err))
+        const arquivoEscrita = fs.createWriteStream("corpus_data/normalized_corpus/"+ nomeArquivoSaida)
+        const {normalizeTextStream} = require("./normalize_stream_text/index")
+       return await normalizeTextStream(arquivoLeitura,arquivoEscrita)
     }
     
 }

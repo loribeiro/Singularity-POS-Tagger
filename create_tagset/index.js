@@ -1,4 +1,6 @@
 const fs = require("fs")
+const util = require('util');
+const mkdirAsync = util.promisify(fs.mkdir);
 
 async function createTagSetFile(arquivoLeitura){
     const getTaggs = require("./retrieve_tagset/index")
@@ -8,18 +10,11 @@ async function createTagSetFile(arquivoLeitura){
     const execute = executeTransformText()
     
     if (fs.existsSync("corpus_data/tagset")) {
-        
         const arquivoEscrita = fs.createWriteStream("corpus_data/tagset/tagset.txt")     
        return await execute(arquivoLeitura, arquivoEscrita, transform)
     }else{
-        fs.mkdir("corpus_data/tagset",{ recursive: true },(err)=>{
-            if(err){
-                throw err
-            }
-            createTagSetFile(arquivoLeitura)
-            //const arquivoEscrita = fs.createWriteStream("corpus_data/tagset/tagset.txt")     
-            //execute(arquivoLeitura, arquivoEscrita, transform)
-        })
+        await mkdirAsync("corpus_data/tagset",{ recursive: true }).catch((err)=>console.log(err))
+        return createTagSetFile(arquivoLeitura)
     }
 
     

@@ -17,7 +17,6 @@ class ManipularTexto extends Transform{
         this.tagSet.delete('')
         this.tagSet.delete("PREP+")
         let setArrStr = Array.from(this.tagSet).toString();
-        console.log(setArrStr)
         this.push(setArrStr)
     }
 }
