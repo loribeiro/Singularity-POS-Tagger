@@ -60,7 +60,8 @@ function createTransitionMatrix(){
     function generateTransformObject(vetor,dictionary){
         return {
             "adjacence": __generateZeroMatrix(vetor.length+1,Object.keys(dictionary).length),
-            "dictionary": __generateIndexMap(vetor)
+            "dictionary": __generateIndexMap(vetor),
+            "dictPalavras": dictionary
         }
     }
 
