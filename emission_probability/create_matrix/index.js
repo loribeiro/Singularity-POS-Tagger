@@ -20,7 +20,7 @@ function createTransitionMatrix(){
                 arquivoLeitura.on("error", reject)
             }) 
         }else{
-            throw "Arquivo tagset.txt inexistente"
+           return false
         }
     }
 
@@ -38,7 +38,7 @@ function createTransitionMatrix(){
                 arquivoLeitura.on("error", reject)
             })
         }else{
-            throw "Arquivo corpusDictionary.json inexistente"
+            return false
         }
     }
 
@@ -52,8 +52,6 @@ function createTransitionMatrix(){
 
     function __generateZeroMatrix(tamanho_linhas, tamanho_colunas){
         let matrix = Array(tamanho_linhas).fill().map(() => Array(tamanho_colunas).fill(e));
-        const dimensions = [ matrix.length, matrix[0].length ];
-        console.log(dimensions)
         return matrix
     }
 
@@ -66,30 +64,29 @@ function createTransitionMatrix(){
     }
 
     async function generateEmissionMatrixFile(transformObject){
-        const {executeTransformText} = require("./execute_transform/ExecuteTransformation")
-        const exec = executeTransformText()
-        const generateTuples = require("./generate_tuples/GenerateWordTagTuple")
-        const transformInterface = require("./transform/TransformInterface")
-        const transformFunction = new transformInterface(generateTuples,transformObject,e)
-        const arquivoLeitura = fs.createReadStream("corpus_data/normalized_corpus/normalized-train.txt")
         if (fs.existsSync("corpus_data/matrix")) {
             if (fs.existsSync("corpus_data/matrix/emission_matrix.json")) {
                 return true
             }else{
+                const {executeTransformText} = require("./execute_transform/ExecuteTransformation")
+                const exec = executeTransformText()
+                const generateTuples = require("./generate_tuples/GenerateWordTagTuple")
+                const transformInterface = require("./transform/TransformInterface")
+                const transformFunction = new transformInterface(generateTuples,transformObject,e)
+                const arquivoLeitura = fs.createReadStream("corpus_data/normalized_corpus/normalized-train.txt")
                 const arquivoSaida = fs.createWriteStream("corpus_data/matrix/emission_matrix.json")
                 return await exec(arquivoLeitura,arquivoSaida,transformFunction)
             }
         }else{
             await mkdirAsync("corpus_data/matrix",{ recursive: true })
-            return await generateTransitionMatrixFile(transformObject)
+            return await generateEmissionMatrixFile(transformObject)
         }
     }
 
     async function execute(){
         const vetor = await retrieveTagsAsArray()
         const dictionary = await retrieveWordDictionaryAsDictionary()
-        console.log(Object.keys(await  dictionary).length)
-        
+
         return generateEmissionMatrixFile(generateTransformObject(await vetor, await dictionary))
     }
     return execute()

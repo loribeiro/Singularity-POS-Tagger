@@ -1,4 +1,3 @@
-const { executeTransformText } = require("../../../tratar_texto/normalize_stream_text/execute_transform")
 
 function generateTuples(chunk, dictTags, dictPalavras, matrix, countPalavra){
     const lista_palavras = chunk.replace(/\r?\n|\r/g," ").split(" ")
@@ -13,7 +12,6 @@ function generateTuples(chunk, dictTags, dictPalavras, matrix, countPalavra){
              }else{
                 countPalavra[dictPalavras[palavra]] = 1
              }
-             //console.log(classe, dictTags[classe],palavra,dictPalavras[palavra],matrix[dictTags[classe]][dictPalavras[palavra]])
         }        
     }  
     return {"matrix": matrix, "countPalavra": countPalavra}
