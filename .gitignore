@@ -1,0 +1,6 @@
+transition_matrix.json
+emission_matrix.json
+corpusDictionary.json
+tagset.txt
+normalize-train.txt
+.DS_Store
