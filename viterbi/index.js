@@ -5,7 +5,7 @@ async function viterbi(text){
     const a = await initialization(text)
     const b = await fowardPass(a.matrixC, a.matrixD, a.wordDictionary, a.emissionMatrix, a.transitionMatrix, a.words, a.tags)
     const c = await backwardPass(a.words,a.tags, b.matrixC, b.matrixD)
-    console.log(await c)
+    
     return await c
 
 }
