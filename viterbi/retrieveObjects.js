@@ -87,6 +87,7 @@ async function retrieveObjects(){
     }
     
     async function execute(){
+        
         return Promise.all(
             [
                 retrieveTagsAsArray(),
@@ -99,4 +100,4 @@ async function retrieveObjects(){
     return execute()
 }
 
-module.exports = retrieveObjects;
+module.exports = retrieveObjects();
