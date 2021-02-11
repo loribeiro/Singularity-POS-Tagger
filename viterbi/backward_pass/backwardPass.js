@@ -24,10 +24,10 @@ async function backwardPass(word, tags, matC, matD){
             resolve(saida)
 
         })
-        //console.log(saida)
+       
     }
     async function execute(){
-        //console.log(matrixC)
+        
         return await backward()
     }
     return execute()

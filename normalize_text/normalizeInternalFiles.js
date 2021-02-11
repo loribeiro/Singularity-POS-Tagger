@@ -2,6 +2,7 @@ const { prependListener } = require("process")
 const fs = require("fs")
 const util = require('util');
 const mkdirAsync = util.promisify(fs.mkdir);
+
 async function executeNormalization(nomeArquivoEntrada, nomeArquivoSaida){
     const arquivoLeitura = fs.createReadStream("corpus_data/original_corpus/" + nomeArquivoEntrada)
     if(fs.existsSync("corpus_data/normalized_corpus")){

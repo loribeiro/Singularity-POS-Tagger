@@ -2,21 +2,20 @@ const retrieveObjects = require("../retrieveObjects")
 
 async function initialization(text){
     
-    function retrieveProbabilityEmissionMatrix(indexTags, indexPalavra, wordDictionary, emissionMatrix){
-        return emissionMatrix[indexTags][wordDictionary[indexPalavra]]
+    function retrieveProbabilityEmissionMatrix(indexTags, indexPalavra, wordDictionary, vetorTags, emissionMatrix){
+        let probability = emissionMatrix[indexTags][wordDictionary[indexPalavra]]
+        if(typeof probability === "undefined"){
+            if(vetorTags[indexTags-1] === "N" || vetorTags[indexTags-1] === "NPROP"){
+                return 0.5
+            }else{
+                return 0.00001
+            }
+        }else{
+
+            return probability
+        }
     }
     
-    function generateTagDictionary(vetorTags){
-        function __generateIndexMap(vetor){
-            let map = {}
-            for(let i = 0; i < vetor.length; i++){
-                map[vetor[i]] = i+1
-            }
-            return map
-        }
-
-        return __generateIndexMap(vetorTags)
-    }
     async function matrixC(words, vetorTags, wordDictionary, emissionMatrix,transitionMatrix){
         const qtd_linhas = vetorTags.length
         const qtd_colunas = words.length
@@ -24,7 +23,7 @@ async function initialization(text){
                     .map((err,indexTags) => Array(qtd_colunas).fill(0));
         for(let i =0; i<qtd_linhas; i++){
             matrix[i][0] = retrieveProbabilityEmissionMatrix(i+1, words[0],
-                wordDictionary, emissionMatrix) * transitionMatrix[0][i+1]
+                wordDictionary, vetorTags, emissionMatrix) * transitionMatrix[0][i+1]
         }
         
         return matrix

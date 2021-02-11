@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 async function generateBaseFiles(){
-    const executeNormalization = require("./tratar_texto/index");
+    const executeNormalization = require("./normalize_text/normalizeInternalFiles");
     const util = require('util');
 
     async function normalizeOrinalCorpus(){

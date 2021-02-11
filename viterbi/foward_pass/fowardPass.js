@@ -10,9 +10,8 @@ async function fowardPass(matC, matD, wordDict, emiMat, tranMat, word, vetorTags
     function retrieveProbabilityEmissionMatrix(indexTags, indexPalavra){
         let probability = emissionMatrix[indexTags][wordDictionary[indexPalavra]]
         if(typeof probability ===  "undefined"){
-            return 0.0001
+            return 0.00001
         }else{
-
             return emissionMatrix[indexTags][wordDictionary[indexPalavra]]
         }
     }
@@ -24,9 +23,6 @@ async function fowardPass(matC, matD, wordDict, emiMat, tranMat, word, vetorTags
                 matrixC[i][w] = soma
                 matrixD[i][w] = k
             }
-            if(words[w] ==="irara"){
-                console.log(words[w],retrieveProbabilityEmissionMatrix(i+1, words[w]), soma)
-            }
         }
     }
 
@@ -36,7 +32,7 @@ async function fowardPass(matC, matD, wordDict, emiMat, tranMat, word, vetorTags
                 for(let i=0; i < tags.length; i++){
                    max(word, i)
                 }
-            }     
+            }
             resolve({
                 "matrixC": matrixC,
                 "matrixD": matrixD
@@ -45,6 +41,8 @@ async function fowardPass(matC, matD, wordDict, emiMat, tranMat, word, vetorTags
     }
     
     async function execute(){
+        //console.log(matrixC)   
+
         return await foward()
     }
 
