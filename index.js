@@ -45,14 +45,3 @@ async function PosTagger(){
 }
 
 module.exports = PosTagger;
-
-const fs = require("fs")
- async function whatever(){
-     const tagger = await PosTagger()
-     const arquivoLeitura = fs.createReadStream("corpus_data/normalized_corpus/normalized-train.txt")
-     const arquivoEscrita = fs.createWriteStream("corpus_data/teste")
-     //await tagger.analyzeString("lucas e doido")
-     await tagger.analyzeStream(arquivoLeitura,arquivoEscrita)//(process.stdin,process.stdout)
-     
- }
- whatever() 
