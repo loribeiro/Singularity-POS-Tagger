@@ -1,6 +1,6 @@
-const retrieveObjects = require("../retrieveObjects")
 
 async function initialization(text){
+    const retrieveObjects = await require("../retrieveObjects").catch(err=>console.log(err))
     
     function retrieveProbabilityEmissionMatrix(indexTags, indexPalavra, wordDictionary, vetorTags, emissionMatrix){
         let probability = emissionMatrix[indexTags][wordDictionary[indexPalavra]]
@@ -41,7 +41,7 @@ async function initialization(text){
         const [ vetorTags, 
                 wordDictionary,
                 emissionMatrix, 
-                transitionMatrix ] = await retrieveObjects()
+                transitionMatrix ] = retrieveObjects
 
         return {
             "matrixC": await matrixC(words,
