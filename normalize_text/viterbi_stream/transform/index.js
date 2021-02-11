@@ -7,9 +7,16 @@ class ManipularTexto extends Transform{
         this.manipularTexto = funcaoParaManipularTexto;
     }
    async _transform(chunk,encoding,callback){
-        const transformChunk = await this.manipularTexto(chunk.toString());
-        //console.log( await transformChunk.join(" "))
-        this.push(await transformChunk.join(" "));
+       const sentences  = chunk.toString().split(" , ")
+       
+       for (let i = 0; i < sentences.length; i++){
+           let transformedChunk = await this.manipularTexto(sentences[i])
+           this.push(await transformedChunk.join(" ") + " ,_PU ");
+
+       }
+
+        //console.log( chunk.toString().split(", "))//"? "||"! "||
+       // this.push(transformedChunk.join(" "));
         callback();
     }
 }
