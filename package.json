@@ -1,0 +1,26 @@
+{
+  "name": "singularity-tagger",
+  "version": "1.0.0",
+  "description": "Portuguese POS-Tagger writen in core Node.JS, specially designed to work with streams.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loribeiro/Singularity-POS-Tagger.git"
+  },
+  "keywords": [
+    "HMM",
+    "Viterbi",
+    "POS-Tagger",
+    "Portuguese",
+    "NLP"
+  ],
+  "author": "Lucas Ribeiro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/loribeiro/Singularity-POS-Tagger/issues"
+  },
+  "homepage": "https://github.com/loribeiro/Singularity-POS-Tagger#readme"
+}
