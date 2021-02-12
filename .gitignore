@@ -4,3 +4,4 @@ corpusDictionary.json
 tagset.txt
 normalize-train.txt
 .DS_Store
+corpus_data/
