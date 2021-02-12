@@ -5,8 +5,8 @@ const mkdirAsync = util.promisify(fs.mkdir);
 async function retrieveObjects(){
 
     async function retrieveTagsAsArray(){
-        if(fs.existsSync("corpus_data/tagset/tagset.txt")){
-            const arquivoLeitura = fs.createReadStream("corpus_data/tagset/tagset.txt")
+        if(fs.existsSync("model/corpus_data/tagset/tagset.txt")){
+            const arquivoLeitura = fs.createReadStream("model/corpus_data/tagset/tagset.txt")
             return await new Promise(function(resolve, reject){
                let vetor = []
                let tags = ""
@@ -25,8 +25,8 @@ async function retrieveObjects(){
     }
 
     async function retrieveWordDictionary(){
-        if(fs.existsSync("corpus_data/word_dictionary/corpusDictionary.json")){
-            const arquivoLeitura = fs.createReadStream("corpus_data/word_dictionary/corpusDictionary.json")
+        if(fs.existsSync("model/corpus_data/word_dictionary/corpusDictionary.json")){
+            const arquivoLeitura = fs.createReadStream("model/corpus_data/word_dictionary/corpusDictionary.json")
             return await new Promise(function(resolve, reject){
                let dictionary = {}
                let conteudo = ""
@@ -45,8 +45,8 @@ async function retrieveObjects(){
     }
 
     async function retrieveEmissionMatrix(){
-        if(fs.existsSync("corpus_data/matrix/emission_matrix.json")){
-            const arquivoLeitura = fs.createReadStream("corpus_data/matrix/emission_matrix.json")
+        if(fs.existsSync("model/corpus_data/matrix/emission_matrix.json")){
+            const arquivoLeitura = fs.createReadStream("model/corpus_data/matrix/emission_matrix.json")
             return await new Promise(function(resolve, reject){
                 let dictionary = {}
                 let conteudo = ""
@@ -66,8 +66,8 @@ async function retrieveObjects(){
     }
 
     async function retrieveTransitionMatrix(){
-        if(fs.existsSync("corpus_data/matrix/transition_matrix.json")){
-            const arquivoLeitura = fs.createReadStream("corpus_data/matrix/transition_matrix.json")
+        if(fs.existsSync("model/corpus_data/matrix/transition_matrix.json")){
+            const arquivoLeitura = fs.createReadStream("model/corpus_data/matrix/transition_matrix.json")
             return await new Promise(function(resolve, reject){
                 let dictionary = {}
                 let conteudo = ""

@@ -9,11 +9,11 @@ async function createTagSetFile(arquivoLeitura){
     const {executeTransformText} = require("./execute_transform/index")
     const execute = executeTransformText()
     
-    if (fs.existsSync("corpus_data/tagset")) {
-        const arquivoEscrita = fs.createWriteStream("corpus_data/tagset/tagset.txt")     
+    if (fs.existsSync("model/corpus_data/tagset")) {
+        const arquivoEscrita = fs.createWriteStream("model/corpus_data/tagset/tagset.txt")     
        return await execute(arquivoLeitura, arquivoEscrita, transform)
     }else{
-        await mkdirAsync("corpus_data/tagset",{ recursive: true }).catch((err)=>console.log(err))
+        await mkdirAsync("model/corpus_data/tagset",{ recursive: true }).catch((err)=>console.log(err))
         return createTagSetFile(arquivoLeitura)
     }
 

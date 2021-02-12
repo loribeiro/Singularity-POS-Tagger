@@ -6,8 +6,8 @@ const mkdirAsync = util.promisify(fs.mkdir);
 function createTransitionMatrix(){
     const e = 0.0001 // constante para evitar que o denominador se torne zero
     async function retrieveTagsAsArray(){
-        if(fs.existsSync("corpus_data/tagset/tagset.txt")){
-            const arquivoLeitura = fs.createReadStream("corpus_data/tagset/tagset.txt")
+        if(fs.existsSync("model/corpus_data/tagset/tagset.txt")){
+            const arquivoLeitura = fs.createReadStream("model/corpus_data/tagset/tagset.txt")
             return await new Promise(function(resolve, reject){
                let vetor = []
                let tags = ""
@@ -52,16 +52,16 @@ function createTransitionMatrix(){
         const generateTuples = require("./generate_tuples/GenerateTagTuple")
         const transformInterface = require("./transform/TransformInterface")
         const transformFunction = new transformInterface(generateTuples,transformObject,e)
-        const arquivoLeitura = fs.createReadStream("corpus_data/normalized_corpus/normalized-train.txt")
-        if (fs.existsSync("corpus_data/matrix")) {
-            if(fs.existsSync("corpus_data/matrix/transition_matrix.json")){
+        const arquivoLeitura = fs.createReadStream("model/corpus_data/normalized_corpus/normalized-train.txt")
+        if (fs.existsSync("model/corpus_data/matrix")) {
+            if(fs.existsSync("model/corpus_data/matrix/transition_matrix.json")){
                 return true
             }else{
-                const arquivoSaida = fs.createWriteStream("corpus_data/matrix/transition_matrix.json")
+                const arquivoSaida = fs.createWriteStream("model/corpus_data/matrix/transition_matrix.json")
                 return await exec(arquivoLeitura,arquivoSaida,transformFunction)
             }
         }else{
-            await mkdirAsync("corpus_data/matrix",{ recursive: true }).catch(err=>console.log(err))
+            await mkdirAsync("model/corpus_data/matrix",{ recursive: true }).catch(err=>console.log(err))
             return await generateTransitionMatrixFile(transformObject)
         }
     }

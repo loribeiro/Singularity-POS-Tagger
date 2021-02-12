@@ -9,11 +9,11 @@ async function createWordDictionaryFile(arquivoLeitura){
     const {executeTransformText} = require("./execute_transform/index")
     const execute = executeTransformText()
     
-    if (fs.existsSync("corpus_data/word_dictionary")) {
-        const arquivoEscrita = fs.createWriteStream("corpus_data/word_dictionary/corpusDictionary.json")     
+    if (fs.existsSync("model/corpus_data/word_dictionary")) {
+        const arquivoEscrita = fs.createWriteStream("model/corpus_data/word_dictionary/corpusDictionary.json")     
        return await execute(arquivoLeitura, arquivoEscrita, transform)
     }else{
-        await mkdirAsync("corpus_data/word_dictionary",{ recursive: true }).catch(err=>console.log(err))
+        await mkdirAsync("model/corpus_data/word_dictionary",{ recursive: true }).catch(err=>console.log(err))
         return await createWordDictionaryFile(arquivoLeitura)
     }
 

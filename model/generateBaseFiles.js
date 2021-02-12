@@ -1,12 +1,12 @@
 const fs = require("fs");
 
 async function generateBaseFiles(){
-    const executeNormalization = require("./normalize_text/normalizeInternalFiles");
+    const executeNormalization = require("../normalize_text/normalizeInternalFiles");
     const util = require('util');
 
     async function normalizeOrinalCorpus(){
         const readdir = util.promisify(fs.readdir);
-        nomes = await readdir("corpus_data/original_corpus");
+        nomes = await readdir("model/corpus_data/original_corpus");
         const myPromises = []
         for (let i =0; i<nomes.length; i++){
             const arquivoSaida = nomes[i].replace("macmorpho", "normalized");
@@ -21,17 +21,17 @@ async function generateBaseFiles(){
     
     
     async function executeTagSetGenerator(){
-        if(fs.existsSync("corpus_data/tagset/tagset.txt")){
+        if(fs.existsSync("model/corpus_data/tagset/tagset.txt")){
             return true
         }else{
             const execute = require("./create_model/create_tagset/index")
-            const arquivoLeitura = fs.createReadStream("corpus_data/normalized_corpus/normalized-train.txt")
+            const arquivoLeitura = fs.createReadStream("model/corpus_data/normalized_corpus/normalized-train.txt")
             return await execute(arquivoLeitura)
         }
     }
     
     async function createTagSetFile(){
-        if(!fs.existsSync("corpus_data/normalized_corpus/normalized-train.txt")){
+        if(!fs.existsSync("model/corpus_data/normalized_corpus/normalized-train.txt")){
             await normalizeOrinalCorpus()
     
             return await executeTagSetGenerator()
@@ -41,9 +41,9 @@ async function generateBaseFiles(){
         }
     }
     async function createWordDictionary(){
-        if(!fs.existsSync("corpus_data/word_dictionary/corpusDictionary.json")){  
+        if(!fs.existsSync("model/corpus_data/word_dictionary/corpusDictionary.json")){  
             const createWordDictionaryFile = require("./create_model/create_corpus_word_dictionary/index")
-            const arquivoLeitura = fs.createReadStream("corpus_data/normalized_corpus/normalized-train.txt")
+            const arquivoLeitura = fs.createReadStream("model/corpus_data/normalized_corpus/normalized-train.txt")
             return await createWordDictionaryFile(arquivoLeitura)
         }else{
             return true

@@ -1,6 +1,6 @@
-const createTransitionProbabilityMatrix = require("./create_model/transition_probability/index")
-const createEmissionProbabilityMatrix = require("./create_model/emission_probability/index")
-const generateBaseFiles = require("./generateBaseFiles")
+const createTransitionProbabilityMatrix = require("./model/create_model/transition_probability/index")
+const createEmissionProbabilityMatrix = require("./model/create_model/emission_probability/index")
+const generateBaseFiles = require("./model/generateBaseFiles")
 const viterbi = require("./viterbi/index")
 const normalizeText = require("./normalize_text/normalizeAPI")
 
