@@ -4,7 +4,7 @@
   "description": "Portuguese POS-Tagger writen in core Node.JS, specially designed to work with streams.",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "repository": {
     "type": "git",
