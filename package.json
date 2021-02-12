@@ -1,6 +1,6 @@
 {
   "name": "singularity-tagger",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Portuguese POS-Tagger writen in core Node.JS, specially designed to work with streams.",
   "main": "index.js",
   "scripts": {
