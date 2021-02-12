@@ -24,7 +24,7 @@ async function generateBaseFiles(){
         if(fs.existsSync("corpus_data/tagset/tagset.txt")){
             return true
         }else{
-            const execute = require("./create_tagset/index")
+            const execute = require("./create_model/create_tagset/index")
             const arquivoLeitura = fs.createReadStream("corpus_data/normalized_corpus/normalized-train.txt")
             return await execute(arquivoLeitura)
         }
@@ -42,7 +42,7 @@ async function generateBaseFiles(){
     }
     async function createWordDictionary(){
         if(!fs.existsSync("corpus_data/word_dictionary/corpusDictionary.json")){  
-            const createWordDictionaryFile = require("./create_corpus_word_dictionary/index")
+            const createWordDictionaryFile = require("./create_model/create_corpus_word_dictionary/index")
             const arquivoLeitura = fs.createReadStream("corpus_data/normalized_corpus/normalized-train.txt")
             return await createWordDictionaryFile(arquivoLeitura)
         }else{

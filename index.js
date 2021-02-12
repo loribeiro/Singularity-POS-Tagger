@@ -1,5 +1,5 @@
-const createTransitionProbabilityMatrix = require("./transition_probability/index")
-const createEmissionProbabilityMatrix = require("./emission_probability/index")
+const createTransitionProbabilityMatrix = require("./create_model/transition_probability/index")
+const createEmissionProbabilityMatrix = require("./create_model/emission_probability/index")
 const generateBaseFiles = require("./generateBaseFiles")
 const viterbi = require("./viterbi/index")
 const normalizeText = require("./normalize_text/normalizeAPI")
@@ -45,3 +45,10 @@ async function PosTagger(){
 }
 
 module.exports = PosTagger;
+
+async function a(){
+    const tagger = await PosTagger()
+    const c = await tagger.analyzeString("andreia é  o  melhor que temos hoje")
+    console.log(await c)
+}
+a()
