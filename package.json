@@ -4,7 +4,7 @@
   "description": "Portuguese POS-Tagger writen in core Node.JS, specially designed to work with streams.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
     "HMM",
     "Viterbi",
     "POS-Tagger",
-    "Portuguese",
+    "Portuguese Tagger",
     "NLP"
   ],
   "author": "Lucas Ribeiro",
