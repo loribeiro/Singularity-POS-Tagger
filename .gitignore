@@ -1,3 +1,4 @@
+node_modules/
 transition_matrix.json
 emission_matrix.json
 corpusDictionary.json
