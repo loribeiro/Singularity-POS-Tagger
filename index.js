@@ -30,7 +30,6 @@ async function PosTagger(){
 
     async function executeStringAnalyzer(text){
         const normalized = await normalizeText(true)
-        console.log("oxe")
         return await tagger.analyze(await normalized(text)).catch(err => console.log(err))
     }
 
