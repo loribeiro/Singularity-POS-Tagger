@@ -1,8 +1,8 @@
 
 
-async function gerarProbabilidadeEmissao(){
+async function gerarProbabilidadeEmissao(BaseFolder){
     const createMatrix = require("./create_matrix/index")
-    return  await createMatrix()
+    return  await createMatrix(BaseFolder)
 }
 
 module.exports = gerarProbabilidadeEmissao;
