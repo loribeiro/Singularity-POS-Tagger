@@ -46,9 +46,3 @@ async function PosTagger(){
 
 module.exports = PosTagger;
 
-async function a(){
-    const tagger = await PosTagger()
-    const c = await tagger.analyzeString("andreia é  o  melhor que temos hoje")
-    console.log(await c)
-}
-a()
