@@ -5,7 +5,9 @@ async function initialization(text){
     function retrieveProbabilityEmissionMatrix(indexTags, indexPalavra, wordDictionary, vetorTags, emissionMatrix){
         let probability = emissionMatrix[indexTags][wordDictionary[indexPalavra]]
         if(typeof probability === "undefined"){
-            if(vetorTags[indexTags-1] === "N" || vetorTags[indexTags-1] === "NPROP"){
+            if(vetorTags[indexTags-1] === "NUM" && !isNaN(indexPalavra)){
+                return 0.9
+            }else if(vetorTags[indexTags-1] === "N" || vetorTags[indexTags-1] === "NPROP"){
                 return 0.5
             }else{
                 return 0.00001

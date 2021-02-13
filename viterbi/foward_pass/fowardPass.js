@@ -10,7 +10,11 @@ async function fowardPass(matC, matD, wordDict, emiMat, tranMat, word, vetorTags
     function retrieveProbabilityEmissionMatrix(indexTags, indexPalavra){
         let probability = emissionMatrix[indexTags][wordDictionary[indexPalavra]]
         if(typeof probability ===  "undefined"){
-            return 0.00001
+            if(tags[indexTags-1] === "NUM" && !isNaN(indexPalavra)){
+                return 0.9
+            }else{
+                return 0.00001
+            }
         }else{
             return emissionMatrix[indexTags][wordDictionary[indexPalavra]]
         }
