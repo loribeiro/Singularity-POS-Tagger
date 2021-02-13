@@ -7,7 +7,7 @@ It's designed specially for Node.Js Streams, which can improve speed and memory 
 
 There is no need to pre-processing the corpus, there is a built in function that cleans everything before the POS classification.
 
-Because the nature of JavaScript be single threaded and NLP jobs are usually very resource intense, almost everything in this package runs asyncronous.
+Because the nature of JavaScript be single threaded and NLP jobs are usually very resource intense, almost everything in this package runs asynchronous.
 
 # Installation 
 In a Node.JS environment you can run on your terminal. 
@@ -41,7 +41,7 @@ There are two main methods available:
 - __analyzeStream__
     * receive as parameter an input stream and output stream and returns to the output stream the normalized text along side the tags
 ## Code example
-- __Inside Asyncronous functions__:
+- __Inside Asynchronous functions__:
     * analyzeString:
       * > const PosTagger = require("singularity-tagger") 
         >
@@ -60,7 +60,7 @@ There are two main methods available:
         > const tagger = await PosTagger()
         >
         > await tagger.analyzeStream(process.stdin, process.stdout) // can be any stream interface
-- __Inside Syncronous functions__:
+- __Inside Synchronous functions__:
     * analyzeString:
       * > const PosTagger = require("singularity-tagger") 
         >
