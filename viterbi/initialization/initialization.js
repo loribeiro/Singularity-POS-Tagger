@@ -7,7 +7,7 @@ async function initialization(text){
         if(typeof probability === "undefined"){
             if(vetorTags[indexTags-1] === "NUM" && !isNaN(indexPalavra)){
                 return 0.9
-            }else if(vetorTags[indexTags-1] === "N" || vetorTags[indexTags-1] === "NPROP"){
+            }else if((vetorTags[indexTags-1] === "N" || vetorTags[indexTags-1] === "NPROP") && isNaN(indexPalavra)){
                 return 0.5
             }else{
                 return 0.00001
