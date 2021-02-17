@@ -1,7 +1,7 @@
 # Singularity-POS-Tagger
 Portuguese POS-Tagger writen in core Node.JS, without any external modules. 
 
-I developed this library to use as base for another personal project. There are planing of room to improve accuracy with heuristics and twiks.
+I developed this library to use as base for another personal project. There is planing of room to improve accuracy with heuristics and twiks.
 
 It's designed specially for Node.Js Streams, which can improve speed and memory use when working on servers or large corpus of data. Nonethless, one can still use a built in method to work with strings.
 
