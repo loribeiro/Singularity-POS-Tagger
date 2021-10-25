@@ -1,19 +1,19 @@
 
 function executeTransformText(){
     
-    async function treatText(streamEntrada, streamSaida, transformFunction){
+    async function modifyText(inputStream, outputStream, transformFunction){
 
         return await new Promise(function(resolve,reject){
-                streamEntrada.pipe(transformFunction).pipe(streamSaida) 
-                streamEntrada.on("end",()=>{
+                inputStream.pipe(transformFunction).pipe(outputStream) 
+                inputStream.on("end",()=>{
                     resolve(true)
                 })
-                streamEntrada.on("error", reject)
+                inputStream.on("error", reject)
              })
     }
 
-    function execute(streamEntrada, streamSaida, transformFunction){   
-        return treatText(streamEntrada,streamSaida, transformFunction)
+    function execute(inputStream, outputStream, transformFunction){   
+        return modifyText(inputStream,outputStream, transformFunction)
     }
     
     return execute
