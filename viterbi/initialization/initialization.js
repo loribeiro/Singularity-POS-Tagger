@@ -1,6 +1,6 @@
 
 async function initialization(text){
-    const retrieveObjects = await require("../retrieveObjects").catch(err=>console.log(err))
+    const retrievedObjects = await require("../retrieveObjects").catch(err=>console.log(err))
     
     function retrieveProbabilityEmissionMatrix(indexTags, indexPalavra, wordDictionary, vetorTags, emissionMatrix){
         let probability = emissionMatrix[indexTags][wordDictionary[indexPalavra]]
@@ -19,11 +19,11 @@ async function initialization(text){
     }
     
     async function matrixC(words, vetorTags, wordDictionary, emissionMatrix,transitionMatrix){
-        const qtd_linhas = vetorTags.length
-        const qtd_colunas = words.length
-        let matrix = Array(qtd_linhas).fill()
-                    .map((err,indexTags) => Array(qtd_colunas).fill(0));
-        for(let i =0; i<qtd_linhas; i++){
+        const lineCount = vetorTags.length
+        const columnCount = words.length
+        let matrix = Array(lineCount).fill()
+                    .map((err,indexTags) => Array(columnCount).fill(0));
+        for(let i =0; i<lineCount; i++){
             matrix[i][0] = retrieveProbabilityEmissionMatrix(i+1, words[0],
                 wordDictionary, vetorTags, emissionMatrix) * transitionMatrix[0][i+1]
         }
@@ -32,9 +32,9 @@ async function initialization(text){
     }
     
     async function matrixD(words, vetorTags){
-        const qtd_linhas = vetorTags.length
-        const qtd_colunas = words.length
-        let matrix = Array(qtd_linhas).fill().map(() => Array(qtd_colunas).fill(0));
+        const lineCount = vetorTags.length
+        const columnCount = words.length
+        let matrix = Array(lineCount).fill().map(() => Array(columnCount).fill(0));
         return matrix
     }
 
@@ -43,7 +43,7 @@ async function initialization(text){
         const [ vetorTags, 
                 wordDictionary,
                 emissionMatrix, 
-                transitionMatrix ] = retrieveObjects
+                transitionMatrix ] = retrievedObjects
 
         return {
             "matrixC": await matrixC(words,
